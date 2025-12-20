@@ -68,8 +68,7 @@ jobs:
           /entrypoint.sh cp build/c3c c3
           /entrypoint.sh cp README.md c3
           /entrypoint.sh cp releasenotes.md c3
-          /entrypoint.sh tar czf c3-android-{{matrix.architecture}}.tar.gz c3
-          /entrypoint.sh ls -la
+          /entrypoint.sh tar czf c3-android-${{matrix.architecture}}.tar.gz c3
 
       - name: upload artifacts
         uses: actions/upload-artifact@v4
