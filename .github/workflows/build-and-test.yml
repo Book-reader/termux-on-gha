@@ -60,7 +60,7 @@ jobs:
           /entrypoint.sh cmake -Bbuild
           /entrypoint.sh make -C build -j$(nproc)
           /entrypoint.sh ./build/c3c --help
-      - uses: actions/upload-artifact@v6.0.0
+      - uses: actions/upload-artifact@v4.6.0
         with:
           name: artifact-${{ matrix.architecture }}
           path: output/*
