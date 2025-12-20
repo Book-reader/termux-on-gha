@@ -31,8 +31,6 @@ jobs:
     steps:
       - name: prepare container
         run: |
-          cat /proc/meminfo
-          exit 1
           ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
           /entrypoint.sh pkg update
           /entrypoint.sh bash -c "yes | pkg upgrade -y"
@@ -47,6 +45,8 @@ jobs:
         run: /entrypoint.sh pkg install -y llvm binutils binutils libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static gdb
       - name: build
         run: |
+          cat /proc/meminfo
+          exit 1
           git clone https://github.com/Book-reader/c3c -b fix-termux
           mv c3c/* .
           cmake -Bbuild -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
