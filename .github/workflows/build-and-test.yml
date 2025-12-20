@@ -54,7 +54,7 @@ jobs:
         run: |
           /entrypoint.sh git clone https://github.com/c3lang/c3c
           /entrypoint.sh mv c3c/* .
-          /entrypoint.sh cmake -Bbuild
+          /entrypoint.sh cmake -Bbuild -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
           /entrypoint.sh make -C build -j$(nproc)
           /entrypoint.sh ./build/c3c --help
 
