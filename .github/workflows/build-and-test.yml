@@ -45,8 +45,6 @@ jobs:
         run: /entrypoint.sh pkg install -y llvm binutils binutils libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static gdb
       - name: build
         run: |
-          free -h
-          exit 1
           git clone https://github.com/Book-reader/c3c -b fix-termux
           mv c3c/* .
           cmake -Bbuild -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
@@ -95,11 +93,13 @@ jobs:
 
       - name: Compile run unit tests
         run: |
+          free -h
           cd test
           ../build/c3c compile-test unit -D SLOW_TESTS
 
       - name: Build testproject
         run: |
+          free -h
           cd resources/testproject
           ../../build/c3c run -vvv --trust=full
 
