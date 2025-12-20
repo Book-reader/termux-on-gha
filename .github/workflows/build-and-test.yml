@@ -105,6 +105,7 @@ jobs:
 
       - name: run compiler tests
         run: |
+          free -h
           cd test
           ../build/c3c compile-run -O1 src/test_suite_runner.c3 -- ../build/c3c test_suite/ 
 
