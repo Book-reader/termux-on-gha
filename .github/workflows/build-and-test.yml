@@ -81,7 +81,9 @@ jobs:
   broken-ideal:
     # if: false
     runs-on: ubuntu-24.04-arm
-    container: termux/termux-docker:aarch64
+    container:
+      image: termux/termux-docker:aarch64
+      options: --entrypoint /entrypoint.sh
     steps:
       - name: setup
         run: |
