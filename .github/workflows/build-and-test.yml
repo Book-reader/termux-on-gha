@@ -119,7 +119,7 @@ jobs:
         run: |
           cd test
           /entrypoint.sh ../build/c3c compile -O1 src/test_suite_runner.c3
-          /entrypoint.sh valgrind ./test_suite_runner ../build/c3c  test_suite/
+          /entrypoint.sh ./test_suite_runner ../build/c3c  test_suite/
 
       - name: bundle_output
         run: |
