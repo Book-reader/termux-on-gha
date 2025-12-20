@@ -2,22 +2,19 @@ name: ' ' # empty name
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  # This is the ideal way termux-docker would work with GHA.
   broken-ideal:
-    # if: false
     runs-on: ubuntu-24.04-arm
     container:
       image: termux/termux-docker:aarch64
-      # options: --entrypoint /entrypoint.sh --user system
     steps:
       - name: setup
         run: |
           /entrypoint.sh pkg install -y ninja clang python git
           # /entrypoint.sh pip install meson
-      - uses: actions/checkout@v3.3.0
+      - uses: actions/checkout@v6.0.1
       - name: build
         run: touch artifact
-      - uses: actions/upload-artifact@v4.6.0
+      - uses: actions/upload-artifact@v6.0.0
         if: always()
         with:
           name: artifact
