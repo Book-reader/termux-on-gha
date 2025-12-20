@@ -63,7 +63,7 @@ jobs:
         run: |
           /entrypoint.sh git clone https://github.com/c3lang/c3c
           /entrypoint.sh mv c3c/* .
-          /entrypoint.sh pkg install -y cmake clang llvm libllvm-static
+          /entrypoint.sh pkg install -y llvm llvmgold binutils binutils-gold libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static
           /entrypoint.sh cmake -Bbuild
           /entrypoint.sh make -C build -j$(nproc)
           /entrypoint.sh ./build/c3c --help
