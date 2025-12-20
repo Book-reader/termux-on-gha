@@ -31,6 +31,7 @@ jobs:
         run: |
           /entrypoint.sh pkg install -y nodejs-lts
           ln -sf ${PREFIX}/bin /__e/node20/bin
+          chown -R 1000:1000 /__e/node20/bin
       - uses: actions/checkout@v6.0.1
       - name: build
         run: touch artifact
