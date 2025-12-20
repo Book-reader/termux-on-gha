@@ -12,7 +12,7 @@ jobs:
             architecture: aarch64
           - runner: ubuntu-24.04
             architecture: x86_64
-    runs-on: ${{matrix.runner}}:${{matrix.architecture}}
+    runs-on: ${{matrix.runner}}
     # prepare writable volume prefix mount for actions/upload-artifact,
     # based on the higher-profile workaround for 32-bit GNU/Linux containers explained here
     # https://github.com/actions/upload-artifact/issues/616#issuecomment-2350667347
