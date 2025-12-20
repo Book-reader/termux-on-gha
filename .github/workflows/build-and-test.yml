@@ -91,10 +91,10 @@ jobs:
           ./a.out
           /entrypoint.sh ../../../build/c3c compile-run test.c3 -L . -l add
 
-      #- name: Compile run unit tests
-      #  run: |
-      #    cd test
-      #    ../build/c3c compile-test unit -D SLOW_TESTS
+      - name: Compile run unit tests
+        run: |
+          cd test
+          ../build/c3c compile-test unit -D SLOW_TESTS
 
       - name: Build testproject
         run: |
