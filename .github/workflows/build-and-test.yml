@@ -27,6 +27,10 @@ jobs:
 
           /entrypoint.sh pkg install -y ninja clang python git
           # /entrypoint.sh pip install meson
+      - name: install bionic-libc nodejs to force compatibility with actions/checkout and actions/upload-artifact
+        run: |
+          /entrypoint.sh pkg install -y nodejs-lts
+          ln -sf ${PREFIX}/bin /__e/node20/bin
       - uses: actions/checkout@v6.0.1
       - name: build
         run: touch artifact
