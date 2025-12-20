@@ -45,7 +45,7 @@ jobs:
         run: /entrypoint.sh pkg install -y llvm binutils binutils libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static gdb
       - name: build
         run: |
-          cat /proc/meminfo
+          free -h
           exit 1
           git clone https://github.com/Book-reader/c3c -b fix-termux
           mv c3c/* .
