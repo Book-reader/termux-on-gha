@@ -50,8 +50,8 @@ jobs:
         run: |
           /entrypoint.sh pkg install -y nodejs-lts
           ln -sf ${PREFIX}/bin /__e/node20/bin
-      - uses: actions/checkout@v6.0.1
-      - name: fix permissions of repository after actions/checkout, which ran as root user, while entrypoint.sh activates system user (1000)
+      - uses: actions/checkout@v4.2.2
+      - name: fix permissions of v6.0.1 after actions/checkout, which ran as root user, while entrypoint.sh activates system user (1000)
         run: chown -R 1000:1000 .
       - name: setup
         run: |
