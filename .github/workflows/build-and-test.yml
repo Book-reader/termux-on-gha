@@ -118,8 +118,7 @@ jobs:
       - name: run compiler tests
         run: |
           cd test
-          /entrypoint.sh ../build/c3c compile -O0 -g src/test_suite_runner.c3
-          ./test_suite_runner ../build/c3c  test_suite/
+          /entrypoint.sh ../build/c3c compile-run -O1 src/test_suite_runner.c3 ../build/c3c test_suite/ 
 
       - name: bundle_output
         run: |
