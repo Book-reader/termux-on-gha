@@ -6,8 +6,8 @@ jobs:
     strategy:
       matrix:
         include:
-         # - runner: ubuntu-24.04
-         #   architecture: x86_64
+          - runner: ubuntu-24.04
+            architecture: x86_64
           - runner: ubuntu-24.04-arm
             architecture: aarch64
     runs-on: ${{ matrix.runner }}
@@ -52,7 +52,7 @@ jobs:
       - name: fix permissions of v6.0.1 after actions/checkout, which ran as root user, while entrypoint.sh activates system user (1000)
         run: chown -R 1000:1000 .
       - name: setup
-        run: /entrypoint.sh pkg install -y llvm llvmgold binutils binutils-gold libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static
+        run: /entrypoint.sh pkg install -y llvm binutils binutils libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static
       - name: build
         run: |
           /entrypoint.sh git clone https://github.com/c3lang/c3c
