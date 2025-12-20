@@ -56,7 +56,7 @@ jobs:
         run: chown -R 1000:1000 .
 
       - name: setup
-        run: /entrypoint.sh pkg install -y llvm binutils binutils libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static
+        run: /entrypoint.sh pkg install -y llvm binutils binutils libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static valgrind
       - name: build
         run: |
           /entrypoint.sh git clone https://github.com/Book-reader/c3c -b fix-termux
@@ -103,7 +103,7 @@ jobs:
           mv add.a libadd.a
           cc test.c -L. -ladd         
           ./a.out
-          /entrypoint.sh ../../../build/c3c compile-run test.c3 -L . -l add           
+          /entrypoint.sh ../../../build/c3c compile-run test.c3 -L . -l add
 
       #- name: Compile run unit tests
       #  run: |
@@ -118,7 +118,8 @@ jobs:
       - name: run compiler tests
         run: |
           cd test
-          /entrypoint.sh ../build/c3c compile-run -O1 src/test_suite_runner.c3 -- ../build/c3c  test_suite/
+          /entrypoint.sh ../build/c3c compile -O1 src/test_suite_runner.c3
+          /entrypoint.sh valgrind ./test_suite_runner ../build/c3c  test_suite/
 
       - name: bundle_output
         run: |
