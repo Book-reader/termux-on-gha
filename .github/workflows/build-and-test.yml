@@ -49,7 +49,7 @@ jobs:
       - name: install bionic-libc nodejs to force compatibility with actions/checkout and actions/upload-artifact
         run: |
           /entrypoint.sh pkg install -y nodejs-lts
-          ln -sf ${PREFIX}/bin/node /__e/node20/bin/node
+          ln -sf ${PREFIX}/bin /__e/node20/bin
       - uses: actions/checkout@v6.0.1
       - name: fix permissions of repository after actions/checkout, which ran as root user, while entrypoint.sh activates system user (1000)
         run: chown -R 1000:1000 .
