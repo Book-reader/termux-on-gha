@@ -7,7 +7,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [ Release, Debug ]
-        architecture: [ aarch64 arm ]
+        architecture: [ aarch64, arm ]
     runs-on: ubuntu-24.04-arm
     # prepare writable volume prefix mount for actions/upload-artifact,
     # based on the higher-profile workaround for 32-bit GNU/Linux containers explained here
