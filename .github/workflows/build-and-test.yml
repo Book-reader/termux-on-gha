@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: prepare container
         run: |
+          cat /proc/meminfo
+          exit 1
           ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
           /entrypoint.sh pkg update
           /entrypoint.sh bash -c "yes | pkg upgrade -y"
