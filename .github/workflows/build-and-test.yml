@@ -36,14 +36,14 @@ jobs:
         run: |
           /entrypoint.sh pkg update
           /entrypoint.sh bash -c "yes | pkg upgrade -y"
-#      # actions/checkout will "think" that termux's tar binary isn't executable if it doesn't have
-#      # executable bit actually set for all users, since even though that permissions restriction
-#      # doesn't actually apply to the root user (at least on Android), GitHub Actions' internal
-#      # source code doesn't "care" and would refuse to run the binary anyway.
-#      # relevant internal source code of GitHub Actions:
-#      # https://github.com/actions/toolkit/blob/930c89072712a3aac52d74b23338f00bb0cfcb24/packages/io/src/io-util.ts#L167-L177
-#      - name: fix executable bit for all binaries in $PREFIX/bin for all users
-#        run: chmod -R o+x ${PREFIX}/bin
+      # actions/checkout will "think" that termux's tar binary isn't executable if it doesn't have
+      # executable bit actually set for all users, since even though that permissions restriction
+      # doesn't actually apply to the root user (at least on Android), GitHub Actions' internal
+      # source code doesn't "care" and would refuse to run the binary anyway.
+      # relevant internal source code of GitHub Actions:
+      # https://github.com/actions/toolkit/blob/930c89072712a3aac52d74b23338f00bb0cfcb24/packages/io/src/io-util.ts#L167-L177
+      - name: fix executable bit for all binaries in $PREFIX/bin for all users
+        run: chmod -R o+x ${PREFIX}/bin
       - name: install bionic-libc nodejs to force compatibility with actions/checkout and actions/upload-artifact
         run: |
           /entrypoint.sh pkg install -y nodejs-lts
