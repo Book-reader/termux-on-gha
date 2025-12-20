@@ -60,48 +60,18 @@ jobs:
           /entrypoint.sh cmake -Bbuild
           /entrypoint.sh make -C build -j$(nproc)
           /entrypoint.sh ./build/c3c --help
-      - uses: actions/upload-artifact@v4.6.0
-        with:
-          name: artifact-${{ matrix.architecture }}
-          path: output/*
-
-  broken-ideal:
-    runs-on: ubuntu-24.04-arm
-    if: false
-    container:
-      image: termux/termux-docker:aarch64
-      # volumes: 
-     #   - /tmp/node20:/__e/node20
-    # approximate environment variables for actions that can't be forced to use entrypoint.sh
-    env:
-      TERMUX_MAIN_PACKAGE_FORMAT: debian
-      ANDROID_ROOT: /system
-      ANDROID_DATA: /data
-      PREFIX: /data/data/com.termux/files/usr
-      HOME: /data/data/com.termux/files/home
-      PATH: /data/data/com.termux/files/usr/bin
-      TMPDIR: /data/data/com.termux/files/usr/tmp
-      LANG: en_US.UTF-8
-      TZ: UTC
-    steps:
-      - name: setup
+      - name: bundle_output
         run: |
-          ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
-          /entrypoint.sh bash -c "yes | pkg upgrade -y"
+          mkdir c3
+          cp -r lib c3
+          cp msvc_build_libraries.py c3
+          cp build/c3c c3
+          cp README.md c3
+          cp releasenotes.md c3
+          tar czf c3-android-{{matrix.build_type}}.tar.gz c3
 
-          /entrypoint.sh pkg install -y ninja clang python git
-          # /entrypoint.sh pip install meson
-      - name: install bionic-libc nodejs to force compatibility with actions/checkout and actions/upload-artifact
-        run: |
-          /entrypoint.sh pkg install -y nodejs-lts
-          ln -sf ${PREFIX}/bin /__e/node20/bin
-          chown -R 1000:1000 /__e/node20/bin
-      - uses: actions/checkout@v6.0.1
-      - name: build
-        run: touch artifact
-      - uses: actions/upload-artifact@v6.0.0
-        if: always()
+      - name: upload artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: artifact
-          path: artifact
-
+          name: c3-android-${{matrix.build_type}}
+          path: c3-android-${{matrix.build_type}}.tar.gz
