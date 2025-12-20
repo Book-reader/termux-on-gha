@@ -83,11 +83,11 @@ jobs:
     runs-on: ubuntu-24.04-arm
     container:
       image: termux/termux-docker:aarch64
-      options: --entrypoint /entrypoint.sh --user system
+      # options: --entrypoint /entrypoint.sh --user system
     steps:
       - name: setup
         run: |
-          pkg install -y ninja clang python git
+          apt install -y ninja clang python git
           pip install meson
       - uses: actions/checkout@v3.3.0
       - name: build
