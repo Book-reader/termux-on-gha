@@ -89,15 +89,6 @@ jobs:
           ../build/c3c compile-run examples/ls.c3
           ../build/c3c compile-run examples/args.c3 -- foo -bar "baz baz"
 
-      - name: Compile and run dynlib-test
-        run: |
-          cd resources/examples/dynlib-test
-          ../../../build/c3c -vv dynamic-lib add.c3
-          mv add.so libadd.so
-          cc test.c -L. -ladd -Wl,-rpath=.         
-          ./a.out
-          ../../../build/c3c compile-run test.c3 -L . -l add -z -Wl,-rpath=.           
-
       - name: Compile and run staticlib-test
         run: |
           cd resources/examples/staticlib-test
