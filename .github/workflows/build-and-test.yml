@@ -42,7 +42,7 @@ jobs:
         run: chown -R 1000:1000 .
 
       - name: setup
-        run: /entrypoint.sh pkg install -y llvm binutils binutils libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static libandroid-execinfo libandroid-execinfo-static binutils-gold
+        run: /entrypoint.sh pkg install -y llvm binutils binutils libgc build-essential cmake llvm git libedit zlib clang make mlir llvm-tools libpolly python libllvm-static libandroid-execinfo libandroid-execinfo-static
       - name: build
         run: |
           /entrypoint.sh git clone https://github.com/Book-reader/c3c -b fix-termux
