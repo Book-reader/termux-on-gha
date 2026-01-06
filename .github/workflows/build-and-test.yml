@@ -53,61 +53,61 @@ jobs:
       - name: Compile and run some examples
         run: |
           cd resources
-          ../build/c3c compile --max-mem 1024 examples/base64.c3
-          ../build/c3c compile --max-mem 1024 examples/binarydigits.c3
-          ../build/c3c compile --max-mem 1024 examples/brainfk.c3
-          ../build/c3c compile --max-mem 1024 examples/factorial_macro.c3
-          ../build/c3c compile --max-mem 1024 examples/fasta.c3
-          ../build/c3c compile --max-mem 1024 examples/gameoflife.c3
-          ../build/c3c compile --max-mem 1024 examples/hash.c3
-          ../build/c3c compile-only --max-mem 1024 examples/levenshtein.c3
-          ../build/c3c compile --max-mem 1024 examples/load_world.c3
-          ../build/c3c compile-only --max-mem 1024 examples/map.c3
-          ../build/c3c compile --max-mem 1024 examples/mandelbrot.c3
-          ../build/c3c compile --max-mem 1024 examples/plus_minus.c3
-          ../build/c3c compile --max-mem 1024 examples/nbodies.c3
-          ../build/c3c compile --max-mem 1024 examples/spectralnorm.c3
-          ../build/c3c compile --max-mem 1024 examples/swap.c3
-          ../build/c3c compile --max-mem 1024 examples/contextfree/boolerr.c3
-          ../build/c3c compile --max-mem 1024 examples/contextfree/dynscope.c3
-          ../build/c3c compile --max-mem 1024 examples/contextfree/guess_number.c3
-          ../build/c3c compile --max-mem 1024 examples/contextfree/multi.c3
-          ../build/c3c compile --max-mem 1024 examples/contextfree/cleanup.c3
-          ../build/c3c compile-run --max-mem 1024 examples/hello_world_many.c3
-          ../build/c3c compile-run --max-mem 1024 examples/time.c3
-          ../build/c3c compile-run --max-mem 1024 examples/fannkuch-redux.c3
-          ../build/c3c compile-run --max-mem 1024 examples/contextfree/boolerr.c3
-          ../build/c3c compile-run --max-mem 1024 examples/load_world.c3
-          ../build/c3c compile-run --max-mem 1024 examples/process.c3
-          ../build/c3c compile-run --max-mem 1024 examples/ls.c3
-          ../build/c3c compile-run --max-mem 1024 examples/args.c3 -- foo -bar "baz baz"
+          ../build/c3c compile --max-mem 2048 examples/base64.c3
+          ../build/c3c compile --max-mem 2048 examples/binarydigits.c3
+          ../build/c3c compile --max-mem 2048 examples/brainfk.c3
+          ../build/c3c compile --max-mem 2048 examples/factorial_macro.c3
+          ../build/c3c compile --max-mem 2048 examples/fasta.c3
+          ../build/c3c compile --max-mem 2048 examples/gameoflife.c3
+          ../build/c3c compile --max-mem 2048 examples/hash.c3
+          ../build/c3c compile-only --max-mem 2048 examples/levenshtein.c3
+          ../build/c3c compile --max-mem 2048 examples/load_world.c3
+          ../build/c3c compile-only --max-mem 2048 examples/map.c3
+          ../build/c3c compile --max-mem 2048 examples/mandelbrot.c3
+          ../build/c3c compile --max-mem 2048 examples/plus_minus.c3
+          ../build/c3c compile --max-mem 2048 examples/nbodies.c3
+          ../build/c3c compile --max-mem 2048 examples/spectralnorm.c3
+          ../build/c3c compile --max-mem 2048 examples/swap.c3
+          ../build/c3c compile --max-mem 2048 examples/contextfree/boolerr.c3
+          ../build/c3c compile --max-mem 2048 examples/contextfree/dynscope.c3
+          ../build/c3c compile --max-mem 2048 examples/contextfree/guess_number.c3
+          ../build/c3c compile --max-mem 2048 examples/contextfree/multi.c3
+          ../build/c3c compile --max-mem 2048 examples/contextfree/cleanup.c3
+          ../build/c3c compile-run --max-mem 2048 examples/hello_world_many.c3
+          ../build/c3c compile-run --max-mem 2048 examples/time.c3
+          ../build/c3c compile-run --max-mem 2048 examples/fannkuch-redux.c3
+          ../build/c3c compile-run --max-mem 2048 examples/contextfree/boolerr.c3
+          ../build/c3c compile-run --max-mem 2048 examples/load_world.c3
+          ../build/c3c compile-run --max-mem 2048 examples/process.c3
+          ../build/c3c compile-run --max-mem 2048 examples/ls.c3
+          ../build/c3c compile-run --max-mem 2048 examples/args.c3 -- foo -bar "baz baz"
 
       - name: Compile and run staticlib-test
         run: |
           cd resources/examples/staticlib-test
-          ../../../build/c3c --max-mem 1024 -vv static-lib add.c3
+          ../../../build/c3c --max-mem 2048 -vv static-lib add.c3
           mv add.a libadd.a
           cc test.c -L. -ladd         
           ./a.out
-          ../../../build/c3c compile-run --max-mem 1024 test.c3 -L . -l add
+          ../../../build/c3c compile-run --max-mem 2048 test.c3 -L . -l add
 
       - name: Compile run unit tests
         run: |
           free -h
           cd test
-          ../build/c3c compile-test --max-mem 1024 unit -D SLOW_TESTS
+          ../build/c3c compile-test --max-mem 2048 unit -D SLOW_TESTS
 
       - name: Build testproject
         run: |
           free -h
           cd resources/testproject
-          ../../build/c3c run --max-mem 1024 -vvv --trust=full
+          ../../build/c3c run --max-mem 2048 -vvv --trust=full
 
       - name: run compiler tests
         run: |
           free -h
           cd test
-          ../build/c3c compile-run --max-mem 1024 -O1 src/test_suite_runner.c3 -- ../build/c3c test_suite/ 
+          ../build/c3c compile-run --max-mem 2048 -O1 src/test_suite_runner.c3 -- ../build/c3c test_suite/ 
 
       - name: bundle_output
         run: |
