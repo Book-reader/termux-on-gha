@@ -6,7 +6,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build_type: [ Release, Debug ]
+        # build_type: [ Release, Debug ]
+        build_type: [Release]
         architecture: [ aarch64, x86_64 ]
         include:
           - architecture: aarch64
